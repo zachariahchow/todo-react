@@ -9,7 +9,7 @@ const ItemList = (props) => {
 
     return (
         <ul className="items__list">
-            <AllListItems listItems={props.listItems}/>
+            <AllListItems listItems={props.listItems} deleteClickHandler={props.deleteClickHandler}/>
         </ul>
     );
 

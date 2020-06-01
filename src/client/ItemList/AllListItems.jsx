@@ -5,7 +5,7 @@ const AllListItems = (props) => {
 
     const allListItems = props.listItems.map((item) => {
         return (
-            <ListItem itemName={item.name} itemIndex={item.index}/>
+            <ListItem itemName={item.name} itemIndex={item.index} deleteClickHandler={props.deleteClickHandler}/>
         );
     })
 

@@ -10,7 +10,7 @@ const AppMain = () => {
         name: 'First Item'
     }]);
 
-    const [inputValue, setInputValue] = useState()
+    const [inputValue, setInputValue] = useState();
 
     const inputChangeHandler = (ev) => {
         setInputValue(ev.target.value);
@@ -25,10 +25,19 @@ const AppMain = () => {
         setListItems([...listItems]);
     }
 
+    const deleteItemClickHandler = (ev) => {
+        listItems.forEach(item => {
+            if (ev.target.dataset.itemId == item.index)
+                listItems.splice(listItems.indexOf(item), 1);
+        });
+
+        setListItems([...listItems]);
+    }
+
     return (
         <main>
-                <ItemForm changeHandler={inputChangeHandler} clickHandler={submitBtnClickHandler}/>
-                <ItemList listItems={listItems}/>
+                <ItemForm changeHandler={inputChangeHandler} submitClickHandler={submitBtnClickHandler} />
+                <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler}/>
             </main>
     );
 }
