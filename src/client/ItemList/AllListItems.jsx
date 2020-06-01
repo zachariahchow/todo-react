@@ -1,11 +1,11 @@
 import React from 'react';
 import ListItem from './ListItem';
 
-const AllListItems = (props) => {
+const AllListItems = ({ listItems, deleteClickHandler }) => {
 
-    const allListItems = props.listItems.map((item) => {
+    const allListItems = listItems.map((item) => {
         return (
-            <ListItem itemName={item.name} itemIndex={item.index} deleteClickHandler={props.deleteClickHandler}/>
+            <ListItem itemName={item.name} itemIndex={item.index} deleteClickHandler={deleteClickHandler}/>
         );
     })
 

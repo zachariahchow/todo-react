@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ListItem = (props) => {
+const ListItem = ({ itemIndex, itemName, deleteClickHandler }) => {
 
     return (
         <div className="list-item__wrapper">
-            <li className="list-item">{props.itemIndex}) {props.itemName}</li>
-            <button type="button" data-item-id={props.itemIndex} onClick={props.deleteClickHandler}>Delete {props.itemName} from List</button>
+            <li className="list-item">{itemIndex}) {itemName}</li>
+            <button type="button" data-item-id={itemIndex} onClick={deleteClickHandler}>Delete {itemName} from List</button>
         </div>
     );
 
