@@ -1,15 +1,13 @@
 import React from 'react';
 import AllListItems from './AllListItems';
+import InputError from './InputError';
 
-const ItemList = (props) => {
-
-    const clickHandler = () => {
-        return;
-    };
+const ItemList = ({ listItems, deleteClickHandler, errorMessage }) => {
 
     return (
         <ul className="items__list">
-            <AllListItems listItems={props.listItems} deleteClickHandler={props.deleteClickHandler}/>
+            <AllListItems listItems={listItems} deleteClickHandler={deleteClickHandler}/>
+            {errorMessage ? <InputError errorMessage={errorMessage}/> : null}
         </ul>
     );
 

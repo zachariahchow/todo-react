@@ -5,12 +5,16 @@ import ItemList from './ItemList/ItemList';
 
 const AppMain = () => {
 
+    //States
     const [listItems, setListItems] = useState([{
         index: 1,
         name: 'First Item'
     }]);
 
     const [inputValue, setInputValue] = useState();
+
+    const [errorMessage, setErrorMessage] = useState();
+    //
 
     const inputChangeHandler = (ev) => {
         setInputValue(ev.target.value);
@@ -21,8 +25,15 @@ const AppMain = () => {
             index: listItems.length + 1,
             name: inputValue
         }
-        listItems.push(newItem);
-        setListItems([...listItems]);
+
+        //length validation
+        if (newItem.name.length > 1 && newItem.name.length < 200) {
+            listItems.push(newItem);
+            setListItems([...listItems]);
+        } else {
+            setErrorMessage('Item must be between 1 and 200 Characters!');
+        }
+
     }
 
     const deleteItemClickHandler = (ev) => {
@@ -37,7 +48,7 @@ const AppMain = () => {
     return (
         <main>
                 <ItemForm changeHandler={inputChangeHandler} submitClickHandler={submitBtnClickHandler} />
-                <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler}/>
+                <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler} errorMessage={errorMessage}/>
             </main>
     );
 }
