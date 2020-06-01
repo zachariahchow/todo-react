@@ -47,7 +47,7 @@ const AppMain = () => {
     }
 
     return (
-        <main className="flex flex-col w-screen justify-around items-center min-h-screen">
+        <main className="flex flex-col w-screen justify-center items-center h-auto">
                 <ItemForm changeHandler={inputChangeHandler} submitClickHandler={submitBtnClickHandler} />
                 <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler} errorMessage={errorMessage}/>
             </main>
