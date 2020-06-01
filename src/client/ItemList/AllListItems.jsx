@@ -10,7 +10,7 @@ const AllListItems = ({ listItems, deleteClickHandler }) => {
     })
 
     return (
-        <div className="list-items__container">
+        <div className="list-items__container flex flex-col justify-center items-center w-full">
             {allListItems}
         </div>
     );
