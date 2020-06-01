@@ -10,7 +10,8 @@
 				"start": "cross-env NODE_ENV=production node index.js",
 				"prebuild": "rimraf build",
 				"build": "npm run build:client",
-				"build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js --mode none"
+				"build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js --mode none",
+				"build:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
 		},
 		"postcss": {},
 		"devDependencies": {
