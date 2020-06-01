@@ -23,28 +23,46 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
-                test: /\.s?css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: {
-                        loader: 'style-loader',
+                // For CSS modules
+                // For pure CSS - /\.css$/i,
+                // For Sass/SCSS - /\.((c|sa|sc)ss)$/i,
+                // For Less - /\.((c|le)ss)$/i,
+                test: /\.((c|sa|sc)ss)$/i,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            // Run `postcss-loader` on each CSS `@import`, do not forget that `sass-loader` compile non CSS `@import`'s into a single file
+                            // If you need run `sass-loader` and `postcss-loader` on each CSS `@import` please set it to `2`
+                            importLoaders: 2,
+                            // Automatically enable css modules for files satisfying `/\.module\.\w+$/i` RegExp.
+                            modules: { auto: true },
+                        },
                     },
-                    use: [{
-                            loader: 'css-loader',
-                            options: {
-                                modules: { auto: true },
-                                sourceMap: IS_DEV
-                            }
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                require('tailwindcss'),
+                                require('autoprefixer')
+                            ]
                         },
-                        {
-                            loader: 'sass-loader',
-                            options: { sourceMap: IS_DEV }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: { sourceMap: IS_DEV }
-                        }
-                    ]
-                })
+                    },
+                    // Can be `less-loader`
+                    // The `test` property should be `\.less/i`
+                    {
+                        loader: 'sass-loader',
+                    },
+                ],
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                },
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
