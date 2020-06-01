@@ -30,6 +30,7 @@ const AppMain = () => {
         if (newItem.name.length > 1 && newItem.name.length < 200) {
             listItems.push(newItem);
             setListItems([...listItems]);
+            setErrorMessage(null);
         } else {
             setErrorMessage('Item must be between 1 and 200 Characters!');
         }
