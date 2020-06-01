@@ -1,11 +1,18 @@
 import React from 'react';
+import AllListItems from './AllListItems';
 
 const ItemList = (props) => {
 
+    const clickHandler = () => {
+        return;
+    };
+
     return (
-        <div className="item-list__container">
-        </div>
+        <ul className="items__list">
+            <AllListItems listItems={props.listItems}/>
+        </ul>
     );
+
 }
 
 
