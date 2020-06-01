@@ -47,7 +47,7 @@ const AppMain = () => {
     }
 
     return (
-        <main>
+        <main className="text-white">
                 <ItemForm changeHandler={inputChangeHandler} submitClickHandler={submitBtnClickHandler} />
                 <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler} errorMessage={errorMessage}/>
             </main>

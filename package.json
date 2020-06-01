@@ -6,11 +6,11 @@
 				"node": "11.6.0"
 		},
 		"scripts": {
-				"dev": "cross-env NODE_ENV=development nodemon",
-				"start": "cross-env NODE_ENV=production node index.js",
+				"dev": "cross-env NODE_ENV=development nodemon && npm run build:css",
+				"start": "cross-env NODE_ENV=production node index.js && npm run build:css",
 				"prebuild": "rimraf build",
-				"build": "npm run build:client",
-				"build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js --mode none",
+				"build": "npm run build:client && npm run build:css",
+				"build:client": "cross-env NODE_ENV=production webpack -p --progress --config=config/webpack.config.prod.js --mode none && npm run build:css",
 				"build:css": "postcss src/client/styles/tailwind.css -o src/client/styles/main.css"
 		},
 		"postcss": {},
