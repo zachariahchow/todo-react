@@ -13,11 +13,36 @@ const AppMain = () => {
 
     const [inputValue, setInputValue] = useState();
 
+    const [editInputValue, setEditInputValue] = useState();
+
     const [errorMessage, setErrorMessage] = useState();
     //
 
     const inputChangeHandler = (ev) => {
         setInputValue(ev.target.value);
+    }
+
+    const editInputChangeHandler = (ev) => {
+        // const targetItemIndex = listItems.findIndex(item => {
+        //     item.index == ev.target.dataset.itemId;
+        // })
+
+
+        // listItems[targetItemIndex].name = ev.target.value;
+
+        const itemNewName = ev.target.value;
+        const itemId = ev.target.dataset.itemId;
+
+        setListItems(prevItems => {
+            prevItems.forEach(item => {
+                if (itemId == item.index)
+                    item.name = itemNewName;
+            });
+
+            return prevItems;
+        })
+
+        setEditInputValue(ev.target.value);
     }
 
     const submitBtnClickHandler = () => {
@@ -49,7 +74,7 @@ const AppMain = () => {
     return (
         <main className="flex flex-col w-screen justify-center items-center h-auto">
                 <ItemForm changeHandler={inputChangeHandler} submitClickHandler={submitBtnClickHandler} />
-                <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler} errorMessage={errorMessage}/>
+                <ItemList listItems={listItems} deleteClickHandler={deleteItemClickHandler} errorMessage={errorMessage} changeHandler={editInputChangeHandler}/>
             </main>
     );
 }
